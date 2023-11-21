@@ -1,4 +1,4 @@
-package com.lcwd.electronic.store.serviceImpl;
+package com.lcwd.electronic.store.serviceI;
 
 import com.lcwd.electronic.store.Dto.UserDto;
 import com.lcwd.electronic.store.constant.AppConstant;
@@ -51,9 +51,9 @@ public class UserServiceImpl implements UserServiceI {
 
     @Override
     public UserDto getUserById(String userId) {
-        log.info("Entering dao call for get user data {}" +userId);
+        log.info("Entering dao call for get user data {}" ,userId);
         User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourseNotFoundException(AppConstant.NOT_FOUND +userId));
-        log.info("complete dao call for get user data");
+        log.info("complete dao call for get user data {}" ,userId);
         return this.modelMapper.map(user,UserDto.class);
     }
 
@@ -63,24 +63,20 @@ public class UserServiceImpl implements UserServiceI {
         User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourseNotFoundException(AppConstant.NOT_FOUND + userId));
         user.setName(userDto.getName());
         user.setAbout(userDto.getAbout());
-        user.setEmail(userDto.getEmail());
         user.setPassword(userDto.getPassword());
         user.setGender(userDto.getGender());
         user.setImageName(userDto.getImageName());
-
         User save = this.userRepo.save(user);
-
-        log.info("complete dao call for update  user data");
+        log.info("complete dao call for update  user data {}" ,userId);
         return this.modelMapper.map(save,UserDto.class);
     }
 
     @Override
     public void deleteUser(String userId) {
-        log.info("Entering dao call for delete user data");
+        log.info("Entering dao call for delete user data {}",userId);
         User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourseNotFoundException(AppConstant.NOT_FOUND + userId));
          this.userRepo.delete(user);
-
-        log.info("complete dao call for delete  user data");
+        log.info("complete dao call for delete  user data {}",userId);
     }
 
     @Override

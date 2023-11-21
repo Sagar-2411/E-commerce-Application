@@ -27,10 +27,10 @@ public class UserController {
 
     /**
      * @param userDto
-     * @return
      * @author Sagar
      * @apiNote to save user data in database
      * @since 1.0v
+     * @return userDto
      */
     @PostMapping("/user")
     public ResponseEntity<UserDto> creatUser(@Valid @RequestBody UserDto userDto) {
@@ -44,6 +44,7 @@ public class UserController {
     /**
      * @param userId
      * @return
+     * @apiNote to get singleUser
      * @author sagar
      * @since 1.0v
      */
@@ -61,9 +62,10 @@ public class UserController {
 /**
  *  @param userId
  *  @author sagar
+ *  @apiNote to update User
  *  @return
  *  @since 1.0v
-* */
+ */
     @PutMapping("/{userId}")
     public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto,@PathVariable String userId){
         log.info("Entering request for update user data in controller layer");

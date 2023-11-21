@@ -14,10 +14,8 @@ import java.util.List;
 public class UserResponse {
 
     private List<User> contain;
-
     private Integer totalElements;
     private Integer pageNumber;
-
     private Integer pageSize;
     private Boolean isLast;
 }
