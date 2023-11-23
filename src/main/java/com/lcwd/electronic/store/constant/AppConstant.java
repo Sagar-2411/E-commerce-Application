@@ -11,4 +11,8 @@ public class AppConstant {
     public final static String SORT_BY="userId";
 
     public final static String SORT_DIR="asc";
+
+    public final static String Not_Allow="not allow";
+
+    public final static String File_with_this="file with this";
 }

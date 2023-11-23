@@ -1,16 +1,18 @@
 package com.lcwd.electronic.store.serviceI;
 
+import com.lcwd.electronic.store.constant.AppConstant;
 import com.lcwd.electronic.store.exception.BadApiRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.UUID;
-
-public class FileServiceImpl implements fileService {
+@Service
+public class FileServiceImpl implements FileService {
 
     private Logger logger= LoggerFactory.getLogger(FileServiceImpl.class);
     @Override
@@ -33,7 +35,7 @@ public class FileServiceImpl implements fileService {
             return  fileNameWithExtension;
         }else
         {
-            throw  new BadApiRequest("File with this "+extenstion +"Not allow");
+            throw  new BadApiRequest(AppConstant.File_with_this+extenstion + AppConstant.Not_Allow);
         }
 
 

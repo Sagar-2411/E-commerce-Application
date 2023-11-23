@@ -3,18 +3,20 @@ package com.lcwd.electronic.store.controller;
 import com.lcwd.electronic.store.Dto.UserDto;
 import com.lcwd.electronic.store.constant.AppConstant;
 import com.lcwd.electronic.store.helper.ApiResponse;
+import com.lcwd.electronic.store.helper.ImageResponse;
 import com.lcwd.electronic.store.payload.UserResponse;
 import com.lcwd.electronic.store.serviceI.UserServiceI;
+import com.lcwd.electronic.store.serviceI.FileService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
-import java.util.List;
-import java.util.logging.Logger;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api")
@@ -23,7 +25,10 @@ public class UserController {
 
     @Autowired
     private UserServiceI userServiceI;
-
+    @Autowired
+    private FileService fileService;
+@Value("${user.profile.image.path}")
+    private String imageUploadPath;
 
     /**
      * @param userDto
@@ -87,7 +92,7 @@ public class UserController {
 
         this.userServiceI.deleteUser(userId);
         log.info("complete request for Delete user data controller layer");
-        return new ResponseEntity<ApiResponse>(new ApiResponse("user deleted succefully", true), HttpStatus.OK);
+        return new ResponseEntity<ApiResponse>(new ApiResponse("user Delete succefully",true, HttpStatus.OK).getStatus());
 
     }
 
@@ -109,5 +114,22 @@ public class UserController {
         UserResponse userDtos = this.userServiceI.gellAllUser(pageNumber,pageSize,sortBy,sortDir);
         log.info("complete request for GetAll user data controller layer");
         return new ResponseEntity<UserResponse>(userDtos,HttpStatus.OK);
+    }
+
+@PostMapping("/image/{userId}")
+    public ResponseEntity<ImageResponse> uploadImage(@RequestParam ("userImage") MultipartFile image,@PathVariable String userId) throws IOException {
+    String imageName = fileService.uploadFile(image, imageUploadPath);
+
+    UserDto user = userServiceI.getUserById(userId);
+    user.setImageName(imageName);
+
+    UserDto userDto = userServiceI.updateUser(user, userId);
+    ImageResponse imageResponse= ImageResponse.builder().imageName(imageName).success(true).status(HttpStatus.OK).build();
+
+    return new ResponseEntity<ImageResponse>(imageResponse,HttpStatus.CREATED);
+
+
+
+
     }
 }
