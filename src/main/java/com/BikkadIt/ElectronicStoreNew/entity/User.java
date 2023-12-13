@@ -1,9 +1,6 @@
 package com.BikkadIt.ElectronicStoreNew.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.naming.Name;
 import javax.persistence.Column;
@@ -19,6 +16,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 public class User {
     @Id
     @Column(name="USER_ID")
