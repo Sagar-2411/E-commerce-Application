@@ -5,11 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.naming.Name;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.sql.DataSource;
 import java.util.Date;
 
 @Entity
@@ -17,22 +17,27 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "product")
 public class Product {
 
     @Id
     private String productId;
 
+    @Column(name = "TITLE")
     private String title;
 
+    @Column(name = "DESCRIPTION")
     private String description;
 
+    @Column(name = "QUANTITY")
     private int quantity;
 
+    @Column(name = "ADD_DATE")
     private Date addDate;
 
+    @Column(name = "LIVE")
     private boolean live;
 
+    @Column(name = "STOCK")
     private boolean stock;
 
 

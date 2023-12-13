@@ -4,6 +4,7 @@ package com.BikkadIt.ElectronicStoreNew.controller;
 import com.BikkadIt.ElectronicStoreNew.Dto.UserDto;
 import com.BikkadIt.ElectronicStoreNew.constant.AppConstant;
 import com.BikkadIt.ElectronicStoreNew.helper.ApiResponse;
+import com.BikkadIt.ElectronicStoreNew.helper.ImageResponse;
 import com.BikkadIt.ElectronicStoreNew.payload.UserResponse;
 import com.BikkadIt.ElectronicStoreNew.service.serviceI.FileService;
 import com.BikkadIt.ElectronicStoreNew.service.serviceI.UserServiceI;
@@ -13,8 +14,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api")
@@ -120,23 +123,23 @@ public class UserController {
         return new ResponseEntity<UserResponse>(userDtos,HttpStatus.OK);
     }
 
-//@PostMapping("/image/{userId}")
-//    public ResponseEntity<ImageResponse> uploadImage(@RequestParam ("userImage") MultipartFile image, @PathVariable String userId) throws IOException {
-//    log.info("Entering request for uploading image  in user controller layer");
-//
-//    String imageName = fileService.uploadFile(image, imageUploadPath);
-//
-//    UserDto user = userServiceI.getUserById(userId);
-//    user.setImageName(imageName);
-//
-//    UserDto userDto = userServiceI.updateUser(user, userId);
-//    ImageResponse imageResponse= ImageResponse.builder().imageName(imageName).message("uploades succefully").success(true).status(HttpStatus.OK).build();
-//    log.info("complete request for uploading image  in user controller layer");
-//
-//    return new ResponseEntity<ImageResponse>(imageResponse,HttpStatus.CREATED);
+@PostMapping("/image/{userId}")
+    public ResponseEntity<ImageResponse> uploadImage(@RequestParam ("userImage") MultipartFile image, @PathVariable String userId) throws IOException {
+    log.info("Entering request for uploading image  in user controller layer");
+
+    String imageName = fileService.uploadFile(image, imageUploadPath);
+
+    UserDto user = userServiceI.getUserById(userId);
+    user.setImageName(imageName);
+
+    UserDto userDto = userServiceI.updateUser(user, userId);
+    ImageResponse imageResponse= ImageResponse.builder().imageName(imageName).message("uploades succefully").success(true).status(HttpStatus.OK).build();
+    log.info("complete request for uploading image  in user controller layer");
+
+    return new ResponseEntity<ImageResponse>(imageResponse,HttpStatus.CREATED);
 
 
 
 
-  //  }
+    }
 }

@@ -1,6 +1,5 @@
 package com.BikkadIt.ElectronicStoreNew.entity;
 
-import com.BikkadIt.ElectronicStoreNew.validate.ImageNameValid;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

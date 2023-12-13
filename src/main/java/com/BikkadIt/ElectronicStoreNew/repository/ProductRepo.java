@@ -1,4 +1,10 @@
 package com.BikkadIt.ElectronicStoreNew.repository;
 
-public interface ProductRepo {
+import com.BikkadIt.ElectronicStoreNew.entity.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProductRepo extends JpaRepository<Product,String> {
+
+
+
 }
