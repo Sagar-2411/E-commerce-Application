@@ -1,10 +1,7 @@
 package com.BikkadIt.ElectronicStoreNew.Dto;
 
 import com.BikkadIt.ElectronicStoreNew.validate.ImageNameValid;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -16,6 +13,7 @@ import javax.validation.constraints.Size;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class UserDto {
     private String id;
 
