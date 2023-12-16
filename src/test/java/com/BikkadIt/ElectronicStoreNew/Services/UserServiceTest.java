@@ -147,5 +147,17 @@ public class UserServiceTest {
         Assertions.assertNotNull(userById);
     }
 
+    @Test
+    public void getUserByName(){
+
+        String userName="";
+        Mockito.when(userRepo.findByName(Mockito.any())).thenReturn(user);
+        UserDto userDto = userService.searchUser(userName);
+        Assertions.assertNotNull(userDto);
+        Assertions.assertEquals("RAUT",userDto.getName());
+
+
+    }
+
 
 }

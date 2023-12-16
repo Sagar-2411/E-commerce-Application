@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.PushBuilder;
 import javax.validation.Valid;
 import java.io.IOException;
 
@@ -121,6 +122,14 @@ public class UserController {
         UserResponse userDtos = this.userServiceI.gellAllUser(pageNumber,pageSize,sortBy,sortDir);
         log.info("complete request for GetAll user data controller layer");
         return new ResponseEntity<UserResponse>(userDtos,HttpStatus.OK);
+    }
+
+    @GetMapping("/name/{Keyword}")
+    public ResponseEntity<UserDto> searchByUserName(@PathVariable String Keyword){
+        log.info("Entering request for Search user");
+        UserDto userDto = userServiceI.searchUser(Keyword);
+        log.info("complete request for search user");
+        return new ResponseEntity<>(userDto,HttpStatus.FOUND);
     }
 
 @PostMapping("/image/{userId}")

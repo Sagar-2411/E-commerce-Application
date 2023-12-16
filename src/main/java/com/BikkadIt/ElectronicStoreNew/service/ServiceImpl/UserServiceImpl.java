@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -73,6 +74,13 @@ public class UserServiceImpl implements UserServiceI {
         User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourseNotFoundException(AppConstant.NOT_FOUND + userId));
          this.userRepo.delete(user);
         log.info("complete dao call for delete  user data {}",userId);
+    }
+
+    @Override
+    public UserDto searchUser(String keyword) {
+        User byName = userRepo.findByName(keyword);
+        return modelMapper.map(byName,UserDto.class);
+
     }
 
     @Override
