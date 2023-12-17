@@ -43,13 +43,14 @@ public class UserServiceTest {
     @BeforeEach           //it is user for before excuting each method
     public void init() {
         user = User.builder()
-                .name("RAUT")
-                .email("sagar@gmail")
+                .name("Raut")
+                .email("Srdff33@gami.com")
                 .gender("male")
-                .password("sagar")
-                .imageName("abc.png")
+                .password("Sfd@77564")
+                .imageName("jpag")
                 .about("this is sagar")
                 .build();
+
     }
 
     @Test
