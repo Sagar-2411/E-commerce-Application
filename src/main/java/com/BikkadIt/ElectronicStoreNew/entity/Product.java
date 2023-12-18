@@ -4,12 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.bytebuddy.asm.Advice;
 
 import javax.naming.Name;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -17,6 +16,7 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Product {
 
     @Id
@@ -32,6 +32,7 @@ public class Product {
     private int quantity;
 
     @Column(name = "PRODUCT_ADD_DATE")
+   // @Temporal(TemporalType.DATE)
     private Date addDate;
 
     @Column(name = "PRODUCT_LIVE")

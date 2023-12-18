@@ -11,7 +11,7 @@ public interface ProductServiceI {
 
      ProductDto getSingleProduct(String productId);
 
-     ProductDto updateProduct(String ProductId);
+     ProductDto updateProduct(ProductDto productDto,String ProductId);
 
      void  deleteProduct(String productId);
 

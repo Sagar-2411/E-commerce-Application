@@ -16,8 +16,8 @@ public class ProductController {
     private ProductServiceI productService;
 
     @PostMapping("/product")
-    public ResponseEntity<ProductDto> createProduct(ProductDto productDto){
-        ProductDto Product = productService. createProduct(productDto);
+    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto){
+        ProductDto Product = productService.createProduct(productDto);
         System.out.println(Product);
         return new ResponseEntity<>(Product, HttpStatus.CREATED);
     }
@@ -28,11 +28,17 @@ public class ProductController {
         return new ResponseEntity<>(allProduct,HttpStatus.FOUND);
     }
 
-@GetMapping("/ProductId")
-    public ResponseEntity<ProductDto> getProductByID(@PathVariable String ProductId){
-        ProductDto singleProduct = productService.getSingleProduct(ProductId);
+@GetMapping("/productId")
+    public ResponseEntity<ProductDto> getProductByID(@PathVariable String productId){
+        ProductDto singleProduct = productService.getSingleProduct(productId);
         return new ResponseEntity<>(singleProduct,HttpStatus.FOUND);
 
+    }
+
+    @PutMapping("/productId")
+    public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto,@PathVariable String productId){
+        ProductDto productDto1 = productService.updateProduct(productDto, productId);
+        return new ResponseEntity<>(productDto1,HttpStatus.OK);
     }
 
 

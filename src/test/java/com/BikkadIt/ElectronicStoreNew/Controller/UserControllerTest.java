@@ -193,6 +193,8 @@ public class UserControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk());
 
+        Mockito.verify(userServiceI,Mockito.times(1)).deleteUser(userId);
+
     }
 
 
