@@ -33,7 +33,8 @@ public class ProductServiceImpl implements ProductServiceI {
         String str = UUID.randomUUID().toString();
         productDto.setProductId(str);
         Product product = this.modelMapper.map(productDto, Product.class);
-        return this.modelMapper.map(product, ProductDto.class);
+       Product product1 = productRepo.save(product);
+       return this.modelMapper.map(product1, ProductDto.class);
 
 
     }

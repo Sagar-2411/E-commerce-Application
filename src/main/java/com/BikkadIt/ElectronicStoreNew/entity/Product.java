@@ -22,22 +22,22 @@ public class Product {
     @Id
     private String productId;
 
-    @Column(name = "TITLE")
+    @Column(name = "PRODUCT_TITLE")
     private String title;
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "PRODUCT_DESCRIPTION")
     private String description;
 
-    @Column(name = "QUANTITY")
+    @Column(name = "PRODUCT_QUANTITY")
     private int quantity;
 
-    @Column(name = "ADD_DATE")
+    @Column(name = "PRODUCT_ADD_DATE")
     private Date addDate;
 
-    @Column(name = "LIVE")
+    @Column(name = "PRODUCT_LIVE")
     private boolean live;
 
-    @Column(name = "STOCK")
+    @Column(name = "PRODUCT_STOCK")
     private boolean stock;
 
 

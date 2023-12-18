@@ -79,13 +79,15 @@ public class CategoryServiceImpl implements CategoryServiceI {
         Sort sort = (sortDir.equalsIgnoreCase("asc")) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
         PageRequest pageRequest = PageRequest.of(pageNumber, pageSize,sort);
         Page<Category> categories = categoryRepo.findAll(pageRequest);
-        List<Category> content = categories.getContent();
+        List<Category> categoryList = categories.getContent();
 
 
-        content.stream().map(user -> this.modelMapper.map(user, CategoryDto.class)).collect(Collectors.toList());
+        List<CategoryDto> categoryDtos = categoryList.stream().map(category -> this.modelMapper.map(category, CategoryDto.class)).collect(Collectors.toList());
+
+
 
         CategoryResponse categoryResponse= new CategoryResponse();
-        categoryResponse.setContain(content);
+        categoryResponse.setContain(categoryDtos);
         categoryResponse.setPageNumber(categories.getNumber());
         categoryResponse.setPageSize(categories.getSize());
         categoryResponse.setTotalElements(categories.getNumberOfElements());

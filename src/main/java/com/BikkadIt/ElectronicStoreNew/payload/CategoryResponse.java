@@ -1,18 +1,17 @@
 package com.BikkadIt.ElectronicStoreNew.payload;
 
+import com.BikkadIt.ElectronicStoreNew.Dto.CategoryDto;
 import com.BikkadIt.ElectronicStoreNew.entity.Category;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class CategoryResponse {
-    private List<Category> contain;
+    private List<CategoryDto> contain;
     private Integer totalElements;
     private Integer pageNumber;
     private Integer pageSize;

@@ -18,6 +18,7 @@ public class ProductController {
     @PostMapping("/product")
     public ResponseEntity<ProductDto> createProduct(ProductDto productDto){
         ProductDto Product = productService. createProduct(productDto);
+        System.out.println(Product);
         return new ResponseEntity<>(Product, HttpStatus.CREATED);
     }
 
