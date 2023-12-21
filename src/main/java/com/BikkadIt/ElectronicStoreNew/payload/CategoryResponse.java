@@ -10,7 +10,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CategoryResponse {
+public class CategoryResponse<T> {
+
     private List<CategoryDto> contain;
     private Integer totalElements;
     private Integer pageNumber;

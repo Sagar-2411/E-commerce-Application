@@ -82,12 +82,12 @@ public class CategoryServiceImpl implements CategoryServiceI {
         List<Category> categoryList = categories.getContent();
 
 
-        List<CategoryDto> categoryDtos = categoryList.stream().map(category -> this.modelMapper.map(category, CategoryDto.class)).collect(Collectors.toList());
+       categoryList.stream().map(category -> this.modelMapper.map(category, CategoryDto.class)).collect(Collectors.toList());
 
 
 
         CategoryResponse categoryResponse= new CategoryResponse();
-        categoryResponse.setContain(categoryDtos);
+        categoryResponse.setContain(categoryList);
         categoryResponse.setPageNumber(categories.getNumber());
         categoryResponse.setPageSize(categories.getSize());
         categoryResponse.setTotalElements(categories.getNumberOfElements());

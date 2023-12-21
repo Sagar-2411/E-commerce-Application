@@ -75,7 +75,7 @@ public class CategoryController {
     public ResponseEntity<CategoryResponse> getAllCategory(
             @RequestParam(value = "pageNumber", defaultValue = AppConstant.PAGE_NUMBER,required = false) Integer pageNumber,
             @RequestParam(value = "pageSize" , defaultValue = AppConstant.PAGE_SIZE,required = false) Integer pageSize,
-            @RequestParam(value = "sortBy" , defaultValue =  AppConstant.SORT_BY,required = false)String sortBy,
+            @RequestParam(value = "sortBy" , defaultValue =  AppConstant.SORT_BY_CATEGORY,required = false)String sortBy,
             @RequestParam(value = "sortDir",defaultValue = AppConstant.SORT_DIR,required = false) String sortDir
     )
     {
