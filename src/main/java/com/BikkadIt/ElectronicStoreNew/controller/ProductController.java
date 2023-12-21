@@ -19,6 +19,14 @@ public class ProductController {
     @Autowired
     private ProductServiceI productService;
 
+
+    /**
+     *  @param productDto
+     *  @author sagar
+     *  @apiNote to create
+     *  @return
+     *  @since 1.0v
+     */
     @PostMapping("/product")
 
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
@@ -29,6 +37,17 @@ public class ProductController {
         return new ResponseEntity<>(Product, HttpStatus.CREATED);
     }
 
+    /**
+     *
+     * @param pageNumber
+     * @param pageSize
+     * @param sortBy
+     * @param sortDir
+     * @author sagar
+     * @apiNote to create
+     * @since 1.0v
+     * @return
+     */
     @GetMapping("/")
     public ResponseEntity<ProductResponse> getAllProduct(
             @RequestParam (value = "pageNumber", defaultValue = AppConstant.PAGE_NUMBER,required = false) Integer pageNumber,
@@ -43,6 +62,14 @@ public class ProductController {
         return new ResponseEntity<>(allProduct, HttpStatus.FOUND);
     }
 
+    /**
+     *
+     * @param productId
+     * @author sagar
+     * @apiNote to get ProductById
+     * @since 1.0v
+     * @return
+     */
     @GetMapping("/{productId}")
     public ResponseEntity<ProductDto> getProductByID(@PathVariable String productId) {
         log.info("Entering request for gate product data in controller layer");
@@ -51,6 +78,15 @@ public class ProductController {
         return new ResponseEntity<>(singleProduct, HttpStatus.FOUND);
 
     }
+
+    /**
+     *
+     * @param productDto
+     * @param productId
+     * @since 1.0v
+     * @author sagar
+     * @return
+     */
 
     @PutMapping("/{productId}")
     public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto, @PathVariable String productId) {

@@ -88,6 +88,8 @@ public class ProductServiceImpl implements ProductServiceI {
 
     @Override
     public ProductDto updateProduct(ProductDto productDto, String productId) {
+        log.info("Entering dao call for update product data {}" ,productId);
+
         Product product = this.productRepo.findById(productId).orElseThrow(() -> new ResourseNotFoundException(AppConstant.NOT_FOUND));
         product.setTitle(productDto.getTitle());
         product.setAddDate(new Date());
@@ -97,11 +99,18 @@ public class ProductServiceImpl implements ProductServiceI {
         product.setStock(product.isStock());
 
         Product product1 = productRepo.save(product);
+        log.info("Complete dao call for update product data {}", productId);
         return modelMapper.map(product1,ProductDto.class);
     }
 
     @Override
     public void deleteProduct(String productId) {
+
+       log.info("Entering dao call for delete product {} ",productId);
+        Product product = this.productRepo.findById(productId).orElseThrow(() -> new RuntimeException(AppConstant.NOT_FOUND));
+        productRepo.delete(product);
+
+        log.info("complete dao call for delete product {} ",productId);
 
     }
 }

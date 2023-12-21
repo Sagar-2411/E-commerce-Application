@@ -1,9 +1,6 @@
 package com.BikkadIt.ElectronicStoreNew.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import net.bytebuddy.asm.Advice;
 
 import javax.naming.Name;
@@ -16,7 +13,7 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Builder
 public class Product {
 
     @Id
