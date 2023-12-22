@@ -3,13 +3,17 @@ package com.BikkadIt.ElectronicStoreNew.controller;
 
 import com.BikkadIt.ElectronicStoreNew.Dto.ProductDto;
 import com.BikkadIt.ElectronicStoreNew.constant.AppConstant;
+import com.BikkadIt.ElectronicStoreNew.helper.ApiResponse;
 import com.BikkadIt.ElectronicStoreNew.payload.ProductResponse;
 import com.BikkadIt.ElectronicStoreNew.service.serviceI.ProductServiceI;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.awt.print.Pageable;
 
 @RestController
 @RequestMapping("/product")
@@ -96,5 +100,17 @@ public class ProductController {
         return new ResponseEntity<>(productDto1, HttpStatus.OK);
     }
 
+    @DeleteMapping("/{productId}")
+    public ResponseEntity<ApiResponse> deleteProduct(@PathVariable String productId){
+        log.info("Entering request for delete product  data in controller layer{}" ,productId);
+        this.productService.deleteProduct(productId);
+        ApiResponse apiResponse= new ApiResponse();
+        apiResponse.setMessage("user delete succefully");
+        apiResponse.setSuccess(true);
+        apiResponse.setStatus(HttpStatus.OK);
+        log.info("Entering request for delete product  data in controller layer{}" ,productId);
+        return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.OK);
+
+    }
 
 }
